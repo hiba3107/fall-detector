@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FallWatch — Real-Time Fall Detection</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark"></span>
+      <span class="brand-name">FallWatch</span>
+    </div>
+    <div class="topbar-sub">Camera-based fall detection prototype</div>
+  </header>
+
+  <main class="layout">
+
+    <section class="stage">
+      <div class="stage-frame">
+        <video id="video" autoplay playsinline muted></video>
+        <canvas id="overlay"></canvas>
+
+        <div id="alertBanner" class="alert-banner hidden">
+          <span class="alert-dot"></span>
+          <span id="alertBannerText">PERSON DOWN — FALL DETECTED</span>
+        </div>
+      </div>
+
+      <button id="startBtn" class="start-btn">Start camera</button>
+    </section>
+
+    <aside class="panel">
+
+      <div class="summary-card">
+        <div class="summary-top">
+          <span class="patient-label">Live monitoring</span>
+          <span id="liveDot" class="live-dot"></span>
+        </div>
+
+        <div class="stat-row">
+          <div class="stat-box">
+            <div class="stat-label">People in frame</div>
+            <div id="peopleCount" class="stat-value">0</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Monitoring for</div>
+            <div id="monitorTime" class="stat-value">00:00</div>
+          </div>
+        </div>
+
+        <div class="stat-row">
+          <div class="stat-box">
+            <div class="stat-label">Falls detected</div>
+            <div id="fallCount" class="stat-value">0</div>
+          </div>
+        </div>
+
+        <button id="muteBtn" class="mute-btn">🔊 Alarm on</button>
+      </div>
+
+      <div id="personList" class="person-list"></div>
+
+      <div class="panel-block">
+        <div class="panel-label">Latest event</div>
+        <div id="latestEvent" class="latest-event">No events yet</div>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <footer class="footnote">
+    Prototype — pose estimation runs locally in your browser. No video leaves your device.
+  </footer>
+
+  <!-- TensorFlow.js + MoveNet -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core@4.20.0/dist/tf-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter@4.20.0/dist/tf-converter.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl@4.20.0/dist/tf-backend-webgl.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection@2.1.3/dist/pose-detection.min.js"></script>
+
+  <script src="app.js"></script>
+</body>
+</html>
